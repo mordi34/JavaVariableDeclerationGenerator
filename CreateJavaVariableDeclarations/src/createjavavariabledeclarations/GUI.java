@@ -240,10 +240,10 @@ public class GUI extends javax.swing.JFrame
         {
             if (useExactly)
             {
-                output += variableDecl + (addSemiColon ? "" : ";") + "\n";
+                output += variableDecl + (addSemiColon ? ";" : "") + "\n";
             } else
             {
-                output += variableDecl + i + (addSemiColon ? "" : ";") + "\n";
+                output += variableDecl + i + (addSemiColon ? ";" : "") + "\n";
             }
         }
         
