@@ -246,15 +246,7 @@ public class GUI extends javax.swing.JFrame
                 output += variableDecl + i + (addSemiColon ? "" : ";") + "\n";
             }
         }
-
-        if (addSemiColonCheck.isSelected())
-        {
-            for (int i = 0; i < 10; i++)
-            {
-
-            }
-        }
-
+        
         outputTA.setText(output);
 
     }//GEN-LAST:event_generateBActionPerformed
