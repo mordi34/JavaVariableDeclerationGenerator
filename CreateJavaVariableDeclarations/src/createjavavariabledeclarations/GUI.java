@@ -34,7 +34,7 @@ public class GUI extends javax.swing.JFrame
         {
             typeCombo.addItem(types[i]);
         }
-        
+
     }
 
     /**
@@ -62,6 +62,7 @@ public class GUI extends javax.swing.JFrame
         outputTA = new javax.swing.JTextArea();
         generateB = new javax.swing.JButton();
         howToUseNameCombo = new javax.swing.JComboBox();
+        addSemiColonCheck = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Generate Java Variable Names");
@@ -97,6 +98,8 @@ public class GUI extends javax.swing.JFrame
         howToUseNameCombo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Use this exactly", "Increment and append an ID to each" }));
         howToUseNameCombo.setToolTipText("This applies if you are generating more than one variable.");
 
+        addSemiColonCheck.setText("End with ;");
+
         javax.swing.GroupLayout jLayeredPane1Layout = new javax.swing.GroupLayout(jLayeredPane1);
         jLayeredPane1.setLayout(jLayeredPane1Layout);
         jLayeredPane1Layout.setHorizontalGroup(
@@ -130,7 +133,10 @@ public class GUI extends javax.swing.JFrame
                                         .addComponent(generateB, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(7, 7, 7)))
                                 .addComponent(typeCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(howToUseNameCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(jLayeredPane1Layout.createSequentialGroup()
+                                .addComponent(howToUseNameCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(addSemiColonCheck)))))
                 .addContainerGap(58, Short.MAX_VALUE))
             .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
         );
@@ -154,7 +160,9 @@ public class GUI extends javax.swing.JFrame
                     .addComponent(nameT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(numberT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(howToUseNameCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(howToUseNameCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(addSemiColonCheck))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(generateB)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -172,6 +180,7 @@ public class GUI extends javax.swing.JFrame
         jLayeredPane1.setLayer(jScrollPane1, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane1.setLayer(generateB, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane1.setLayer(howToUseNameCombo, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane1.setLayer(addSemiColonCheck, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -193,6 +202,7 @@ public class GUI extends javax.swing.JFrame
         boolean useExactly = true;
         int numberToGen = 1;
         String output = "";
+        boolean addSemiColon = addSemiColonCheck.isSelected();
 
         if (!((String) accessModifiersCombo.getSelectedItem()).equals(PACKAGE_ACCESS_STRING))
         {
@@ -209,6 +219,7 @@ public class GUI extends javax.swing.JFrame
             variableDecl += " " + staticCheck.getText();
         }
 
+        variableDecl += " " + (String) typeCombo.getSelectedItem();
         variableDecl += " " + nameT.getText();
 
         if (((String) howToUseNameCombo.getSelectedItem()).equals(INCREMENT_AND_APPEND_STRING))
@@ -229,10 +240,18 @@ public class GUI extends javax.swing.JFrame
         {
             if (useExactly)
             {
-                output += variableDecl + "\n";
+                output += variableDecl + (addSemiColon ? "" : ";") + "\n";
             } else
             {
-                output += variableDecl + i + "\n";
+                output += variableDecl + i + (addSemiColon ? "" : ";") + "\n";
+            }
+        }
+
+        if (addSemiColonCheck.isSelected())
+        {
+            for (int i = 0; i < 10; i++)
+            {
+
             }
         }
 
@@ -266,6 +285,7 @@ public class GUI extends javax.swing.JFrame
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox accessModifiersCombo;
+    private javax.swing.JCheckBox addSemiColonCheck;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JCheckBox finalCheck;
     private javax.swing.JButton generateB;
