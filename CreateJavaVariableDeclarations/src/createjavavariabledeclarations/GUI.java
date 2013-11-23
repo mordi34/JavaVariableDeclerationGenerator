@@ -20,9 +20,9 @@ public class GUI extends javax.swing.JFrame
     public static final String INCREMENT_AND_APPEND_STRING = "Increment and append an ID to each";
 
     public static final String[] types =
-    {
+      {
         "String", "int", "double", "long", "boolean", "short", "float", "char", "Object",
-    };
+      };
 
     /**
      * Creates new form GUI
@@ -30,10 +30,11 @@ public class GUI extends javax.swing.JFrame
     public GUI()
     {
         initComponents();
+        this.setLocationRelativeTo(null);
         for (int i = 0; i < types.length; i++)
-        {
+          {
             typeCombo.addItem(types[i]);
-        }
+          }
 
     }
 
@@ -205,48 +206,48 @@ public class GUI extends javax.swing.JFrame
         boolean addSemiColon = addSemiColonCheck.isSelected();
 
         if (!((String) accessModifiersCombo.getSelectedItem()).equals(PACKAGE_ACCESS_STRING))
-        {
+          {
             variableDecl += ((String) accessModifiersCombo.getSelectedItem());
-        }
+          }
 
         if (finalCheck.isSelected())
-        {
+          {
             variableDecl += " " + finalCheck.getText();
-        }
+          }
 
         if (staticCheck.isSelected())
-        {
+          {
             variableDecl += " " + staticCheck.getText();
-        }
+          }
 
         variableDecl += " " + (String) typeCombo.getSelectedItem();
         variableDecl += " " + nameT.getText();
 
         if (((String) howToUseNameCombo.getSelectedItem()).equals(INCREMENT_AND_APPEND_STRING))
-        {
+          {
             useExactly = false;
-        }
+          }
 
         try
-        {
+          {
             numberToGen = Integer.parseInt(numberT.getText());
-        } catch (NumberFormatException ex)
-        {
+          } catch (NumberFormatException ex)
+          {
             numberT.setText("That input is invalid.");
             numberToGen = 1;
-        }
+          }
 
         for (int i = 0; i < numberToGen; i++)
-        {
+          {
             if (useExactly)
-            {
+              {
                 output += variableDecl + (addSemiColon ? ";" : "") + "\n";
-            } else
-            {
+              } else
+              {
                 output += variableDecl + i + (addSemiColon ? ";" : "") + "\n";
-            }
-        }
-        
+              }
+          }
+
         outputTA.setText(output);
 
     }//GEN-LAST:event_generateBActionPerformed
@@ -258,13 +259,13 @@ public class GUI extends javax.swing.JFrame
     {
 
         try
-        {
+          {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 
-        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException ex)
-        {
+          } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException ex)
+          {
             System.out.println("Problem setting look and feel.");
-        }
+          }
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable()
         {
